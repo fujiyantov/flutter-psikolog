@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:psikolog/helper.dart';
 import 'package:psikolog/models/faculties.dart';
 import 'package:http/http.dart' as http;
 import 'package:psikolog/models/study_programs.dart';
 
 class MasterService {
-  String baseUrl = 'http://127.0.0.1:8000/api';
+  String baseUrl = Helper.baseUrl;
 
   Future<List<Faculties>> getAllFaculty() async {
     var url = '$baseUrl/faculties';

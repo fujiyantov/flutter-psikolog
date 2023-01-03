@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:psikolog/helper.dart';
 import 'package:psikolog/models/topics.dart';
 import 'package:http/http.dart' as http;
 
 class TopicService {
-  String? baseUrl = 'http://127.0.0.1:8000/api';
+  String baseUrl = Helper.baseUrl;
 
   Future<List<Topics>> getAll() async {
     var url = '$baseUrl/topics';

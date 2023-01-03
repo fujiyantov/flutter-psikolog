@@ -1,16 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'package:psikolog/helper.dart';
 import 'package:psikolog/models/auth.dart';
 
 class AuthService {
-  String baseUrl = 'http://127.0.0.1:8000/api';
+  String baseUrl = Helper.baseUrl;
 
   Future<Auth> login({
     String? email,
     String? password,
   }) async {
     var url = '$baseUrl/login';
+    
     var headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -25,7 +26,7 @@ class AuthService {
       headers: headers,
       body: body,
     );
-
+    print(response.body);
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       Auth auth = Auth.fromJson(data);
