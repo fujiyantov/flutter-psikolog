@@ -35,7 +35,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
+      // scrollDirection: Axis.vertical,
+      physics: ScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -132,6 +133,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: ListView.builder(
                 // scrollDirection: Axis.vertical,
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: itemCount,
                 itemBuilder: (contex, index) {

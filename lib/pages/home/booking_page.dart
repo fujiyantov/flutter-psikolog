@@ -49,12 +49,16 @@ class _BookingPageState extends State<BookingPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
         elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         title: const Text(
           'Layanan Psikolog',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
+            fontSize: 14,
           ),
         ),
         centerTitle: false,

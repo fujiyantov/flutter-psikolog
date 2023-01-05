@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:psikolog/datas/histories.dart';
 import 'package:psikolog/models/schedules.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:psikolog/services/schedule_service.dart';
@@ -20,10 +19,10 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   void initState() {
     super.initState();
-    getTopic();
+    getHistories();
   }
 
-  getTopic() async {
+  getHistories() async {
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
     schedules = await ScheduleService()
@@ -40,6 +39,7 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: ScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -50,9 +50,11 @@ class _HistoryPageState extends State<HistoryPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Riawayat Konsultasi',
+                  'Riwayat Konsultasi',
                   style: TextStyle(
                     color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(
@@ -65,30 +67,110 @@ class _HistoryPageState extends State<HistoryPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
+                      horizontal: 5,
                       vertical: 5,
                     ),
                     child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       itemCount: itemCount,
-                      // itemCount: 5,
                       itemBuilder: (context, index) {
                         return Container(
-                          margin: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.all(15),
+                          margin: const EdgeInsets.only(bottom: 10, top: 10),
                           width: double.maxFinite,
                           height: 150,
                           decoration: BoxDecoration(
-                            color: Colors.blueGrey,
                             borderRadius: BorderRadius.circular(10),
+                            border: Border.all(width: 1, color: Colors.black26),
                           ),
-                          child: Center(
-                            child: Text(
-                              schedules[index].topicName.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.access_time_outlined,
+                                      size: 12, color: Colors.black),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    '${schedules[index].date} - ${schedules[index].time}',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
+                              const Divider(
+                                thickness: 1,
+                                color: Colors.black26,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                textBaseline: TextBaseline.ideographic,
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    child: Text(
+                                      'Topik',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  Text(': '),
+                                  Text(
+                                    schedules[index].topicName.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                textBaseline: TextBaseline.ideographic,
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    child: Text(
+                                      'Diagnosis',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  Text(': '),
+                                  SizedBox(
+                                    width: 200,
+                                    child: Text(
+                                      schedules[index].diagnosis != null ? schedules[index].diagnosis.toString() : '-',
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 4,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
                         );
                       },

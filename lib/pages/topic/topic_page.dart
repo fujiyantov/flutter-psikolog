@@ -37,15 +37,16 @@ class _TopicPageState extends State<TopicPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         elevation: 0,
         centerTitle: false,
         title: const Text(
           'Pilih Topik',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+          style: TextStyle(color: Colors.black, fontSize: 14),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
       ),
       body: Visibility(
         visible: isLoaded,

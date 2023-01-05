@@ -63,6 +63,7 @@ class _MainPageState extends State<MainPage> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: const Header(),
+        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(

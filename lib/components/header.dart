@@ -6,7 +6,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'Application',
+      'Aplikasi Konsultasi',
       style: TextStyle(
         color: Colors.black,
         fontSize: 14

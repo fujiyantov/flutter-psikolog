@@ -33,7 +33,7 @@ class ScheduleService {
       headers: headers,
       body: body,
     );
-    // print(response.body);
+    
     if (response.statusCode == 201) {
       return true;
     } else {
@@ -42,7 +42,7 @@ class ScheduleService {
   }
 
   Future<List<Schedules>> getAll({String? token}) async {
-    var url = '$baseUrl/schedules';
+    var url = '$baseUrl/histories';
     var headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -53,6 +53,7 @@ class ScheduleService {
       Uri.parse(url),
       headers: headers,
     );
+    
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
 
@@ -64,7 +65,7 @@ class ScheduleService {
 
       return schedules;
     } else {
-      throw Exception('failed: fetch news');
-    }
+      return [];
+    } 
   }
 }

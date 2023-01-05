@@ -19,6 +19,7 @@ class MasterService {
       Uri.parse(url),
       headers: headers,
     );
+
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
 
@@ -27,7 +28,10 @@ class MasterService {
       for (var item in data) {
         faculties.add(Faculties.fromJson(item));
       }
+      List debug = [];
+      debug.add(faculties.map((e) => print(e.title)));
 
+      print(debug);
       return faculties;
     } else {
       throw Exception('failed: fetch faculties');

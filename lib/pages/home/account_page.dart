@@ -25,11 +25,12 @@ class AccountPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Profile',
+                'PROFILE',
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               GestureDetector(
                 onTap: () {
@@ -47,119 +48,283 @@ class AccountPage extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 50,
-                height: 50,
+                width: 64,
+                height: 64,
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1, color: Colors.grey),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      '${user?.profile}',
+                    ),
+                  ),
+                  borderRadius: BorderRadius.circular(64),
                 ),
               ),
               const SizedBox(
-                width: 10,
+                width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '${user?.name}',
-                    style: const TextStyle(color: Colors.black),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.ideographic,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
+                          'Username',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      Text(': '),
+                      Container(
+                        width: 100,
+                        child: Text(
+                          user != null ? '${user.name}' : '-',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 8,
                   ),
-                  Text(
-                    '${user?.email}',
-                    style: const TextStyle(color: Colors.black),
-                  )
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.ideographic,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
+                          'Email',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      Text(': '),
+                      Container(
+                        width: 100,
+                        child: Text(
+                          user != null ? '${user.email}' : '-',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               )
             ],
           ),
           const SizedBox(
-            height: 30,
+            height: 50,
           ),
           const Text(
-            'Data Diri',
-            style: TextStyle(
-              color: Colors.black,
-            ),
+            'DATA DIRI',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
-          Container(
-            height: 200,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black45,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+          const Divider(
+            thickness: 1,
+            color: Colors.black26,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.ideographic,
                 children: [
-                  Text(
-                    user != null ? '${user.fullName}' : '-',
-                    style: const TextStyle(
+                  Container(
+                    width: 130,
+                    child: Text(
+                      'Nama Lengkap',
+                      style: const TextStyle(
+                        fontSize: 14,
                         color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14),
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '${user?.nim}',
-                    style: const TextStyle(
+                  Text(': '),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      user != null ? '${user.fullName}' : '-',
+                      style: const TextStyle(
+                        fontSize: 14,
                         color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14),
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '${user?.facultyName}',
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '${user?.studyProgramName}',
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    '${user?.noTelp}',
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14),
-                  ),
-                  /* Text(
-                    user.bop != null && user.bod != null ? '${user.bop}, ${user.bod}' : '-' ,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14),
-                  ), */
                 ],
               ),
-            ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.ideographic,
+                children: [
+                  Container(
+                    width: 130,
+                    child: Text(
+                      'NIM',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                  ),
+                  Text(': '),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      '${user?.nim}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.ideographic,
+                children: [
+                  Container(
+                    width: 130,
+                    child: Text(
+                      'Fakultas',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                  ),
+                  Text(': '),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      '${user?.facultyName}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.ideographic,
+                children: [
+                  Container(
+                    width: 130,
+                    child: Text(
+                      'Program Studi',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                  ),
+                  Text(': '),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      '${user?.studyProgramName}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.ideographic,
+                children: [
+                  Container(
+                    width: 130,
+                    child: Text(
+                      'No. Telp',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                  ),
+                  Text(': '),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      '${user?.noTelp}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),

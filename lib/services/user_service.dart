@@ -19,7 +19,7 @@ class UserService {
       Uri.parse(url),
       headers: headers,
     );
-    print(response.body);
+    
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       Users user = Users.fromJson(data);

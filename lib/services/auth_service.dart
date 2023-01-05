@@ -26,7 +26,7 @@ class AuthService {
       headers: headers,
       body: body,
     );
-    print(response.body);
+    
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       Auth auth = Auth.fromJson(data);
