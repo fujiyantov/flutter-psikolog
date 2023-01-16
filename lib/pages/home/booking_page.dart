@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:psikolog/models/topics.dart';
-import 'package:psikolog/pages/home/offline_page.dart';
+// import 'package:psikolog/pages/home/offline_page.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:psikolog/services/schedule_service.dart';
 
@@ -19,7 +19,7 @@ class _BookingPageState extends State<BookingPage> {
   Widget build(BuildContext context) {
     // provider
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    createCounselling() async {
+    createCounsellingOnline() async {
       setState(() {
         isLoading = true;
       });
@@ -27,9 +27,153 @@ class _BookingPageState extends State<BookingPage> {
       if (await ScheduleService().postSchedules(
         token: authProvider.auth?.accessToken,
         topicId: widget.topics.id,
+        date: widget.topics.schedule,
+        time: widget.topics.time,
+        type: 0,
+      )) {
+        showModalBottomSheet<void>(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(25.0),
+            ),
+          ),
+          isDismissible: false,
+          builder: (BuildContext context) {
+            return Container(
+              height: 200,
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Terima kasih, Pengajuan Konsultasi kamu sudah diajukan',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          const Text(
+                            'Kami mengirim pemberitahuan untuk proses selanjutnya',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      child: const Text('Tutup'),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green, elevation: 0),
+                      onPressed: () => Navigator.pushNamed(context, '/home'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              "Error! Create Schedule has been failed",
+              textAlign: TextAlign.center,
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    createCounsellingOffline() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await ScheduleService().postSchedules(
+        token: authProvider.auth?.accessToken,
+        topicId: widget.topics.id,
+        date: widget.topics.schedule,
+        time: widget.topics.time,
         type: 1,
       )) {
-        Navigator.pushNamed(context, '/home');
+        showModalBottomSheet<void>(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(25.0),
+            ),
+          ),
+          isDismissible: false,
+          builder: (BuildContext context) {
+            return Container(
+              height: 200,
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Terima kasih!',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          const Text(
+                            'Pengajuan Konsultasi kamu sudah diajukan. Kami akan mengirim pemberitahuan untuk proses selanjutnya',
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      child: const Text('Tutup'),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green, elevation: 0),
+                      onPressed: () => Navigator.pushNamed(context, '/home'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -142,7 +286,7 @@ class _BookingPageState extends State<BookingPage> {
                     ),
                     Row(
                       children: [
-                        Expanded(
+                        /* Expanded(
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -176,10 +320,36 @@ class _BookingPageState extends State<BookingPage> {
                               ],
                             ),
                           ),
+                        ), */
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: createCounsellingOffline,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    'assets/images/meet-offline.png',
+                                    width: 48,
+                                    height: 48,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  'Tatap Muka',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         Expanded(
                           child: GestureDetector(
-                            onTap: createCounselling,
+                            onTap: createCounsellingOnline,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [

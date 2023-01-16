@@ -37,7 +37,63 @@ class _OfflinePageState extends State<OfflinePage> {
         time: timeInput.text,
         type: 0,
       )) {
-        Navigator.pushNamed(context, '/home');
+        showModalBottomSheet<void>(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(25.0),
+            ),
+          ),
+          isDismissible: false,
+          builder: (BuildContext context) {
+            return Container(
+              height: 200,
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Selamat!',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          const Text(
+                            'Jadwal konsultasi kamu berhasil terkirim, selanjutkan psikolog akan menghubungi kamu',
+                            style: TextStyle(
+                              color: Colors.black38,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      child: const Text('Tutup'),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green, elevation: 0),
+                      onPressed: () => Navigator.pushNamed(context, '/home'),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

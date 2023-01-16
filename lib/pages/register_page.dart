@@ -234,7 +234,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 15,
                 ),
-                TextField(
+                /* TextField(
                   readOnly: true,
                   controller: dateinput,
                   onTap: () async {
@@ -271,7 +271,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(
                   height: 15,
-                ),
+                ), */
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,

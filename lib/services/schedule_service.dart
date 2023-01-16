@@ -68,4 +68,32 @@ class ScheduleService {
       return [];
     } 
   }
+
+  Future<List<Schedules>> getPending({String? token}) async {
+    var url = '$baseUrl/pending';
+    var headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+
+    var response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+    
+    if (response.statusCode == 200) {
+      List data = jsonDecode(response.body)['data'];
+
+      List<Schedules> schedules = [];
+
+      for (var item in data) {
+        schedules.add(Schedules.fromJson(item));
+      }
+
+      return schedules;
+    } else {
+      return [];
+    } 
+  }
 }

@@ -12,6 +12,7 @@ class Schedules {
   int? type;
   String? diagnosis;
   int? status;
+  String? statusName;
   String? createdAt;
 
   Schedules({
@@ -28,6 +29,7 @@ class Schedules {
     this.type,
     this.diagnosis,
     this.status,
+    this.statusName,
     this.createdAt,
   });
 
@@ -45,6 +47,7 @@ class Schedules {
     type = json['type'];
     diagnosis = json['diagnosis'];
     status = json['status'];
+    statusName = json['status_name'];
     createdAt = json['created_at'];
   }
 
@@ -63,6 +66,7 @@ class Schedules {
       'type' : type,
       'diagnosis' : diagnosis,
       'status' : status,
+      'status_name' : statusName,
       'created_at' : createdAt,
     };
   }

@@ -4,6 +4,10 @@ class Topics {
   String? category;
   String? image;
   String? description;
+  int? day;
+  String? time;
+  String? schedule;
+  String? dayName;
 
   Topics(
     this.id,
@@ -11,6 +15,10 @@ class Topics {
     this.category,
     this.image,
     this.description,
+    this.day,
+    this.time,
+    this.schedule,
+    this.dayName,
   );
 
   Topics.fromJson(Map<String, dynamic> json) {
@@ -19,6 +27,10 @@ class Topics {
     image = json['image'];
     description = json['description'];
     category = json['category'];
+    day = json['day'];
+    time = json['time'];
+    schedule = json['schedule'];
+    dayName = json['day_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +40,10 @@ class Topics {
       'image': image,
       'content': description,
       'category': category,
+      'day': day,
+      'time': time,
+      'schedule': schedule,
+      'day_name': dayName,
     };
   }
 }
