@@ -223,7 +223,7 @@ class _BookingPageState extends State<BookingPage> {
               Container(
                 padding: const EdgeInsets.all(15),
                 width: double.maxFinite,
-                height: 120,
+                height: 90,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(width: 1, color: Colors.black26),
@@ -246,7 +246,7 @@ class _BookingPageState extends State<BookingPage> {
                       '${widget.topics.title}',
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.black38,
+                        color: Colors.black,
                       ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
@@ -254,7 +254,46 @@ class _BookingPageState extends State<BookingPage> {
                   ],
                 ),
               ),
-              // End of Topic
+              const SizedBox(
+                height: 15,
+              ),
+              // Schedules
+              Container(
+                padding: const EdgeInsets.all(15),
+                width: double.maxFinite,
+                height: 90,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(width: 1, color: Colors.black26),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Jadwal Psikolog',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Divider(
+                      thickness: 1,
+                      color: Colors.black26,
+                    ),
+                    Text(
+                      '${widget.topics.dayName}, ${widget.topics.schedule} ${widget.topics.time}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    )
+                  ],
+                ),
+              ),
+              // End of Schedules
               const SizedBox(
                 height: 15,
               ),

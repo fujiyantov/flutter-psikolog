@@ -80,15 +80,20 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Image.asset(
-                        'assets/images/schedule.png',
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/schedules');
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Image.asset(
+                          'assets/images/schedule.png',
+                        ),
                       ),
                     ),
                     const SizedBox(

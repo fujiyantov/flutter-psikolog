@@ -95,7 +95,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                     width: 5,
                                   ),
                                   Text(
-                                    '${schedules[index].date} - ${schedules[index].time}',
+                                    '${schedules[index].createdAt}',
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
@@ -107,6 +107,34 @@ class _HistoryPageState extends State<HistoryPage> {
                               const Divider(
                                 thickness: 1,
                                 color: Colors.black26,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                textBaseline: TextBaseline.ideographic,
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    child: Text(
+                                      'Status',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  Text(': '),
+                                  Text(
+                                    schedules[index].statusName.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ],
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -136,9 +164,6 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.baseline,
                                 textBaseline: TextBaseline.ideographic,
@@ -159,7 +184,11 @@ class _HistoryPageState extends State<HistoryPage> {
                                   SizedBox(
                                     width: 200,
                                     child: Text(
-                                      schedules[index].diagnosis != null ? schedules[index].diagnosis.toString() : '-',
+                                      schedules[index].diagnosis != null
+                                          ? schedules[index]
+                                              .diagnosis
+                                              .toString()
+                                          : '-',
                                       style: const TextStyle(
                                         fontSize: 12,
                                         color: Colors.black,

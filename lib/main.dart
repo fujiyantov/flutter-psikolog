@@ -3,6 +3,8 @@ import 'package:psikolog/pages/login_page.dart';
 import 'package:psikolog/pages/main_page.dart';
 import 'package:psikolog/pages/register_page.dart';
 import 'package:provider/provider.dart';
+import 'package:psikolog/pages/shcedules_page.dart';
+import 'package:psikolog/pages/splash_page.dart';
 import 'package:psikolog/pages/topic/topic_page.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:psikolog/providers/news_provider.dart';
@@ -34,10 +36,12 @@ class MyApp extends StatelessWidget {
         title: 'Konseling Psikolog',
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => const LoginPage(),
+          '/': (context) => const SplashPage(),
+          '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
           '/home': (context) => const MainPage(),
           '/topics': (context) => const TopicPage(),
+          '/schedules': (context) => const SchedulesPage(),
         },
         // home: RegisterPage(),
       ),
