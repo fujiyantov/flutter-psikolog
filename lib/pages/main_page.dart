@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Riwayat',
+            label: 'Profil',
             backgroundColor: Colors.white,
           ),
         ],

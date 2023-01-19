@@ -30,6 +30,8 @@ class _BookingPageState extends State<BookingPage> {
         date: widget.topics.schedule,
         time: widget.topics.time,
         type: 0,
+        noTelp: widget.topics.noTelp,
+        meetAt: widget.topics.meetAt,
       )) {
         showModalBottomSheet<void>(
           context: context,
@@ -116,6 +118,8 @@ class _BookingPageState extends State<BookingPage> {
         date: widget.topics.schedule,
         time: widget.topics.time,
         type: 1,
+        noTelp: widget.topics.noTelp,
+        meetAt: widget.topics.meetAt,
       )) {
         showModalBottomSheet<void>(
           context: context,

@@ -13,6 +13,8 @@ class ScheduleService {
     String? date,
     String? time,
     int? type,
+    String? noTelp,
+    String? meetAt,
   }) async {
     var url = '$baseUrl/schedules';
     var headers = {
@@ -26,6 +28,8 @@ class ScheduleService {
       'date': date,
       'time': time,
       'type': type,
+      'no_telp': noTelp,
+      'meet_at': meetAt,
     });
 
     var response = await http.post(
@@ -33,7 +37,7 @@ class ScheduleService {
       headers: headers,
       body: body,
     );
-    
+    print(response.body);
     if (response.statusCode == 201) {
       return true;
     } else {
@@ -81,7 +85,7 @@ class ScheduleService {
       Uri.parse(url),
       headers: headers,
     );
-    
+    print(response.body);
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
 

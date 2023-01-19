@@ -62,20 +62,24 @@ class TopicService {
     }
   }
 
-  Future<List<TopicSummary>> getTopicSummary() async {
+  Future<List<TopicSummary>> getTopicSummary({
+    String? token,
+  }) async {
     var url = '$baseUrl/topic-summary';
     var headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
     };
 
     var response = await http.get(
       Uri.parse(url),
       headers: headers,
     );
+    print(response.statusCode);
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
-
+      
       List<TopicSummary> topicSummary = [];
 
       for (var item in data) {
