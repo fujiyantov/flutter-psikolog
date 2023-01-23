@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:psikolog/components/loading_button.dart';
 import 'package:psikolog/providers/auth_provider.dart';
@@ -13,6 +14,23 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late bool _obsecureText = true;
   bool isLoading = false;
+  String? mtoken = '';
+
+  @override
+  void initState() {
+    super.initState();
+    // requestPermission();
+    getToken();    
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+       mtoken = token;
+       print("MY TOKEN $mtoken"); 
+      });
+    });
+  }
 
   // form filed
   TextEditingController emailController = TextEditingController(text: '');
@@ -32,6 +50,7 @@ class _LoginPageState extends State<LoginPage> {
       if (await authProvider.login(
         email: emailController.text,
         password: passwordController.text,
+        fcmToken: mtoken,
       )) {
         Navigator.pushNamed(context, '/home');
       } else {

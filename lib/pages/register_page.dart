@@ -4,6 +4,7 @@ import 'package:psikolog/models/study_programs.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:psikolog/services/master_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -30,6 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
   int? facultyId;
   int? studyProgramId;
   String? gender;
+  String? mtoken = '';
 
   @override
   void initState() {
@@ -39,6 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
     studyPrograms = [];
     getAllFaculty();
     getAllStudyProgram();
+    getToken();
   }
 
   getAllFaculty() async {
@@ -52,6 +55,15 @@ class _RegisterPageState extends State<RegisterPage> {
     var resStudyPrograms = await MasterService().getAllStudyProgram();
     setState(() {
       studyPrograms = resStudyPrograms;
+    });
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+       mtoken = token;
+       print("MY TOKEN REGIS $mtoken"); 
+      });
     });
   }
 
@@ -74,6 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
         facultyId: facultyId,
         studyProgramId: studyProgramId,
         gender: gender,
+        fcmToken: mtoken,
       )) {
         Navigator.pushNamed(context, '/home');
       } else {

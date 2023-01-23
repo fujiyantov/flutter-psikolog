@@ -9,6 +9,7 @@ class AuthService {
   Future<Auth> login({
     String? email,
     String? password,
+    String? fcmToken,
   }) async {
     var url = '$baseUrl/login';
     
@@ -19,6 +20,7 @@ class AuthService {
     var body = jsonEncode({
       'email': email,
       'password': password,
+      'fcm_token': fcmToken,
     });
 
     var response = await http.post(
@@ -45,6 +47,7 @@ class AuthService {
     int? facultyId,
     int? studyProgramId,
     String? gender,
+    String? fcmToken,
   }) async {
     var url = '$baseUrl/register';
     var headers = {
@@ -60,6 +63,7 @@ class AuthService {
       'faculty_id': facultyId,
       'study_program_id': studyProgramId,
       'gender': gender,
+      'fcm_token': fcmToken,
     });
 
     var response = await http.post(

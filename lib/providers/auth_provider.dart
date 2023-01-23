@@ -15,11 +15,13 @@ class AuthProvider with ChangeNotifier {
   Future<bool> login({
     String? email,
     String? password,
+    String? fcmToken,
   }) async {
     try {
       Auth auth = await AuthService().login(
         email: email,
         password: password,
+        fcmToken: fcmToken,
       );
 
       _auth = auth;
@@ -38,6 +40,7 @@ class AuthProvider with ChangeNotifier {
     int? facultyId,
     int? studyProgramId,
     String? gender,
+    String? fcmToken,
   }) async {
     try {
       Auth auth = await AuthService().register(
@@ -49,6 +52,7 @@ class AuthProvider with ChangeNotifier {
         facultyId: facultyId,
         studyProgramId: studyProgramId,
         gender: gender,
+        fcmToken: fcmToken,
       );
 
       _auth = auth;

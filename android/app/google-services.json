@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "26010506432",
+    "project_id": "psikolog-39791",
+    "storage_bucket": "psikolog-39791.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26010506432:android:2da0dd87e6aeaed7cb0925",
+        "android_client_info": {
+          "package_name": "com.example.psikolog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26010506432-3sfo5pnbgs5vgf03inorjc798k3jm18b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPJbYzo5Twfg5TvjNAAF-RbFBGYuHm5xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26010506432-3sfo5pnbgs5vgf03inorjc798k3jm18b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
