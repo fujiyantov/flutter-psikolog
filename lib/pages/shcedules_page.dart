@@ -65,7 +65,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
               padding: const EdgeInsets.all(15),
               margin: const EdgeInsets.only(bottom: 10, top: 10),
               width: double.maxFinite,
-              height: 150,
+              height: 180,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(width: 1, color: Colors.black26),
@@ -101,6 +101,34 @@ class _SchedulesPageState extends State<SchedulesPage> {
                       Container(
                         width: 80,
                         child: Text(
+                          'Status',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      Text(': '),
+                      Text(
+                        schedules[index].statusName.toString(),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.ideographic,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
                           'Topik',
                           style: const TextStyle(
                             fontSize: 14,
@@ -113,6 +141,34 @@ class _SchedulesPageState extends State<SchedulesPage> {
                       Text(': '),
                       Text(
                         schedules[index].topicName.toString(),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.ideographic,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
+                          'Tipe',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      Text(': '),
+                      Text(
+                        schedules[index].type == 1 ? 'Offline' : 'Online',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -150,7 +206,44 @@ class _SchedulesPageState extends State<SchedulesPage> {
                       ),
                     ],
                   ),
-                  Row(
+                  schedules[index].type == 1
+                      ? Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.ideographic,
+                          children: [
+                            Container(
+                              width: 80,
+                              child: Text(
+                                'Tempat',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              ),
+                            ),
+                            Text(': '),
+                            Text(
+                              '${schedules[index].meetAt}',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ],
+                        )
+                      : ElevatedButton(
+                          onPressed: () {},
+                          child: Text('Chat'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            elevation: 0
+                          ),
+                        ),
+                  /* Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.ideographic,
                     children: [
@@ -182,7 +275,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                         ),
                       ),
                     ],
-                  )
+                  ) */
                 ],
               ),
             );

@@ -3,7 +3,6 @@ import 'package:psikolog/models/faculties.dart';
 import 'package:psikolog/models/study_programs.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import 'package:psikolog/services/master_service.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -18,6 +17,8 @@ class _RegisterPageState extends State<RegisterPage> {
   late List<StudyPrograms> studyPrograms;
   late bool _obsecureText = true;
   bool isLoading = false;
+  static const List<String> list = <String>['Laki-laki', 'Perempuan'];
+
   // form filed
   TextEditingController dateinput = TextEditingController();
   TextEditingController emailController = TextEditingController(text: '');
@@ -25,9 +26,10 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController nameController = TextEditingController(text: '');
   TextEditingController nimController = TextEditingController(text: '');
   TextEditingController noTelpController = TextEditingController(text: '');
-  
+
   int? facultyId;
   int? studyProgramId;
+  String? gender;
 
   @override
   void initState() {
@@ -71,6 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
         bod: dateinput.text,
         facultyId: facultyId,
         studyProgramId: studyProgramId,
+        gender: gender,
       )) {
         Navigator.pushNamed(context, '/home');
       } else {
@@ -229,6 +232,36 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'No. Telp',
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 3,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: DropdownButton(
+                    hint: const Text('Pilih Jenis Kelamin'),
+                    isExpanded: true,
+                    underline: const SizedBox(),
+                    items: list.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    value: gender,
+                    onChanged: (e) {
+                      setState(() {
+                        gender = e;
+                      });
+                    },
                   ),
                 ),
                 const SizedBox(

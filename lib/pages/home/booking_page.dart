@@ -5,6 +5,8 @@ import 'package:psikolog/models/topics.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:psikolog/services/schedule_service.dart';
 
+enum SingingCharacter { lafayette, jefferson }
+
 class BookingPage extends StatefulWidget {
   final Topics topics;
   const BookingPage({super.key, required this.topics});
@@ -15,23 +17,32 @@ class BookingPage extends StatefulWidget {
 
 class _BookingPageState extends State<BookingPage> {
   bool isLoading = false;
+  SingingCharacter? _character = SingingCharacter.lafayette;
+
   @override
   Widget build(BuildContext context) {
     // provider
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     createCounsellingOnline() async {
+      print(_character?.index);
       setState(() {
         isLoading = true;
       });
 
+      String? userChooseDate = widget.topics.schedule;
+      if (_character?.index == 1) {
+        userChooseDate = widget.topics.schedule2;
+      }
+
       if (await ScheduleService().postSchedules(
         token: authProvider.auth?.accessToken,
         topicId: widget.topics.id,
-        date: widget.topics.schedule,
+        date: userChooseDate,
         time: widget.topics.time,
         type: 0,
         noTelp: widget.topics.noTelp,
         meetAt: widget.topics.meetAt,
+        chooseDate: _character.toString(),
       )) {
         showModalBottomSheet<void>(
           context: context,
@@ -108,18 +119,25 @@ class _BookingPageState extends State<BookingPage> {
     }
 
     createCounsellingOffline() async {
+      print(_character?.index);
       setState(() {
         isLoading = true;
       });
 
+      String? userChooseDate = widget.topics.schedule;
+      if (_character?.index == 1) {
+        userChooseDate = widget.topics.schedule2;
+      }
+
       if (await ScheduleService().postSchedules(
         token: authProvider.auth?.accessToken,
         topicId: widget.topics.id,
-        date: widget.topics.schedule,
+        date: userChooseDate,
         time: widget.topics.time,
         type: 1,
         noTelp: widget.topics.noTelp,
         meetAt: widget.topics.meetAt,
+        chooseDate: _character.toString(),
       )) {
         showModalBottomSheet<void>(
           context: context,
@@ -265,7 +283,7 @@ class _BookingPageState extends State<BookingPage> {
               Container(
                 padding: const EdgeInsets.all(15),
                 width: double.maxFinite,
-                height: 90,
+                height: 180,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(width: 1, color: Colors.black26),
@@ -274,7 +292,7 @@ class _BookingPageState extends State<BookingPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Jadwal Psikolog',
+                      'Pilih Jadwal Konsultasi',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -284,15 +302,52 @@ class _BookingPageState extends State<BookingPage> {
                       thickness: 1,
                       color: Colors.black26,
                     ),
-                    Text(
-                      '${widget.topics.dayName}, ${widget.topics.schedule} ${widget.topics.time}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListTile(
+                          title: Text(
+                            '${widget.topics.dayName}, ${widget.topics.schedule} ${widget.topics.time}',
+                            style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          leading: Radio<SingingCharacter>(
+                            value: SingingCharacter.lafayette,
+                            groupValue: _character,
+                            onChanged: (SingingCharacter? value) {
+                              setState(() {
+                                _character = value;
+                              });
+                            },
+                          ),
+                        ),
+                        widget.topics.schedule2 != null
+                            ? ListTile(
+                                title: Text(
+                                  '${widget.topics.dayName2}, ${widget.topics.schedule2} ${widget.topics.time}',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                                leading: Radio<SingingCharacter>(
+                                  value: SingingCharacter.jefferson,
+                                  groupValue: _character,
+                                  onChanged: (SingingCharacter? value) {
+                                    setState(() {
+                                      _character = value;
+                                    });
+                                  },
+                                ),
+                              )
+                            : Container(),
+                      ],
                     )
                   ],
                 ),

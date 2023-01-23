@@ -166,6 +166,34 @@ class _HistoryPageState extends State<HistoryPage> {
                                 Container(
                                   width: 80,
                                   child: Text(
+                                    'Status',
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                                Text(': '),
+                                Text(
+                                  schedules[index].type == 1 ? 'Offline' : 'Online',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.ideographic,
+                              children: [
+                                Container(
+                                  width: 80,
+                                  child: Text(
                                     'Diagnosis',
                                     style: const TextStyle(
                                       fontSize: 14,

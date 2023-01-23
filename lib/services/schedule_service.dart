@@ -15,6 +15,7 @@ class ScheduleService {
     int? type,
     String? noTelp,
     String? meetAt,
+    String? chooseDate,
   }) async {
     var url = '$baseUrl/schedules';
     var headers = {
@@ -30,6 +31,7 @@ class ScheduleService {
       'type': type,
       'no_telp': noTelp,
       'meet_at': meetAt,
+      'choose_date': chooseDate,
     });
 
     var response = await http.post(

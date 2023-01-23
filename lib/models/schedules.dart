@@ -14,6 +14,7 @@ class Schedules {
   int? status;
   String? statusName;
   String? createdAt;
+  String? meetAt;
 
   Schedules({
     this.id,
@@ -31,6 +32,7 @@ class Schedules {
     this.status,
     this.statusName,
     this.createdAt,
+    this.meetAt,
   });
 
   Schedules.fromJson(Map<String, dynamic> json) {
@@ -49,6 +51,7 @@ class Schedules {
     status = json['status'];
     statusName = json['status_name'];
     createdAt = json['created_at'];
+    meetAt = json['meet_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -68,6 +71,7 @@ class Schedules {
       'status' : status,
       'status_name' : statusName,
       'created_at' : createdAt,
+      'meet_at' : meetAt,
     };
   }
 }

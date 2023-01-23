@@ -44,6 +44,7 @@ class AuthService {
     String? bod,
     int? facultyId,
     int? studyProgramId,
+    String? gender,
   }) async {
     var url = '$baseUrl/register';
     var headers = {
@@ -58,6 +59,7 @@ class AuthService {
       'bod': bod,
       'faculty_id': facultyId,
       'study_program_id': studyProgramId,
+      'gender': gender,
     });
 
     var response = await http.post(

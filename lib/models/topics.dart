@@ -10,6 +10,8 @@ class Topics {
   String? dayName;
   String? noTelp;
   String? meetAt;
+  String? schedule2;
+  String? dayName2;
 
   Topics(
     this.id,
@@ -23,6 +25,8 @@ class Topics {
     this.dayName,
     this.noTelp,
     this.meetAt,
+    this.schedule2,
+    this.dayName2,
   );
 
   Topics.fromJson(Map<String, dynamic> json) {
@@ -37,6 +41,8 @@ class Topics {
     dayName = json['day_name'];
     noTelp = json['no_telp'];
     meetAt = json['meet_at'];
+    schedule2 = json['schedule2'];
+    dayName2 = json['day_name2'];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +58,8 @@ class Topics {
       'day_name': dayName,
       'no_telp': noTelp,
       'meet_at': meetAt,
+      'schedule2': schedule2,
+      'day_name2': dayName2,
     };
   }
 }

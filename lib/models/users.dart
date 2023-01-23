@@ -15,6 +15,7 @@ class Users {
   String? facultyName;
   int? studyProgramId;
   String? studyProgramName;
+  String? gender;
 
   Users({
     this.id,
@@ -33,6 +34,7 @@ class Users {
     this.facultyName,
     this.studyProgramId,
     this.studyProgramName,
+    this.gender,
   });
 
   Users.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,7 @@ class Users {
     facultyName = json['faculty_name'];
     studyProgramId = json['study_program_id'];
     studyProgramName = json['study_program_name'];
+    gender = json['gender'];
   }
 
   Map<String, dynamic> toJson() {
@@ -72,6 +75,7 @@ class Users {
       'faculty_name': facultyName,
       'study_program_id': studyProgramId,
       'study_program_name': studyProgramName,
+      'gender': gender,
     };
   }
 }

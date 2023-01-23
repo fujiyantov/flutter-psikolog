@@ -223,6 +223,40 @@ class AccountPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(
+                height: 10,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.ideographic,
+                children: [
+                  Container(
+                    width: 130,
+                    child: Text(
+                      'Jenis Kelamin',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                  ),
+                  Text(': '),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      '${user?.gender}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
                 height: 20,
               ),
               Row(

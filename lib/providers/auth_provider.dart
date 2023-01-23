@@ -37,6 +37,7 @@ class AuthProvider with ChangeNotifier {
     String? bod,
     int? facultyId,
     int? studyProgramId,
+    String? gender,
   }) async {
     try {
       Auth auth = await AuthService().register(
@@ -47,6 +48,7 @@ class AuthProvider with ChangeNotifier {
         bod: bod,
         facultyId: facultyId,
         studyProgramId: studyProgramId,
+        gender: gender,
       );
 
       _auth = auth;
