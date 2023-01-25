@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:psikolog/models/schedules.dart';
+import 'package:psikolog/pages/chat_page.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:psikolog/services/schedule_service.dart';
 
@@ -236,12 +237,17 @@ class _SchedulesPageState extends State<SchedulesPage> {
                           ],
                         )
                       : ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatPage(),
+                              ),
+                            );
+                          },
                           child: Text('Chat'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            elevation: 0
-                          ),
+                              backgroundColor: Colors.green, elevation: 0),
                         ),
                   /* Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
