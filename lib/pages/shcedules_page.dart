@@ -236,7 +236,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                             ),
                           ],
                         )
-                      : ElevatedButton(
+                      : schedules[index].status == 2 ? ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -250,7 +250,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                           child: Text('Chat'),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green, elevation: 0),
-                        ),
+                        ) : Container(),
                   /* Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.ideographic,
