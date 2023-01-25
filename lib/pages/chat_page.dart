@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:psikolog/models/chat.dart';
+import 'package:psikolog/models/schedules.dart';
 import 'package:psikolog/providers/auth_provider.dart';
 import 'package:psikolog/services/chat_service.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+  final Schedules schedules;
+  const ChatPage({super.key, required this.schedules});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -34,7 +36,7 @@ class _ChatPageState extends State<ChatPage> {
       print(timer.tick);
 
       chat = await ChatService()
-          .getDataChat(token: authProvider.auth?.accessToken);
+          .getDataChat(token: authProvider.auth?.accessToken, id: widget.schedules.id);
 
       if (chat.length.toInt() > 0) {
         setState(() {
@@ -45,7 +47,28 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
-  handleAddMessage() async {}
+  handleAddMessage() async {
+    AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
+
+    if (await ChatService().postChat(
+      token: authProvider.auth?.accessToken,
+      scheduleId: widget.schedules.id,
+      messages: messageController.text
+    )) {
+      messageController.clear();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Error!",
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +195,9 @@ class _ChatPageState extends State<ChatPage> {
                 ),
                 GestureDetector(
                   onTap: handleAddMessage,
-                  child: Icon(Icons.send),
+                  child: Icon(
+                    Icons.send,
+                  ),
                 )
               ],
             ),

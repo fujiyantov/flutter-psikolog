@@ -241,7 +241,9 @@ class _SchedulesPageState extends State<SchedulesPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ChatPage(),
+                                builder: (context) => ChatPage(
+                                  schedules: schedules[index],
+                                ),
                               ),
                             );
                           },

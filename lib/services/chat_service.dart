@@ -7,8 +7,8 @@ import 'package:psikolog/models/chat.dart';
 class ChatService {
   String baseUrl = Helper.baseUrl;
 
-  Future<List<Chat>> getDataChat({String? token}) async {
-    var url = '$baseUrl/chat/schedule/43';
+  Future<List<Chat>> getDataChat({String? token, int? id}) async {
+    var url = '$baseUrl/chat/schedule/$id';
     var headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -33,5 +33,35 @@ class ChatService {
     } else {
       return [];
     } 
+  }
+
+  Future<bool> postChat({
+    String? token,
+    int? scheduleId,
+    String? messages,
+  }) async {
+    var url = '$baseUrl/chat/schdules';
+    var headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+
+    var body = jsonEncode({
+      'schedule_id': scheduleId,
+      'messages': messages,
+    });
+
+    var response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: body,
+    );
+    
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
