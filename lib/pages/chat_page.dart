@@ -32,7 +32,7 @@ class _ChatPageState extends State<ChatPage> {
     AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
 
-    Timer.periodic(const Duration(seconds: 2), (timer) async {
+    Timer.periodic(const Duration(seconds: 1), (timer) async {
       print(timer.tick);
 
       chat = await ChatService()

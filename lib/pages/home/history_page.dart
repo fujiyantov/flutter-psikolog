@@ -166,7 +166,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 Container(
                                   width: 80,
                                   child: Text(
-                                    'Status',
+                                    'Layanan',
                                     style: const TextStyle(
                                       fontSize: 14,
                                       color: Colors.black,
@@ -177,7 +177,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),
                                 Text(': '),
                                 Text(
-                                  schedules[index].type == 1 ? 'Offline' : 'Online',
+                                  schedules[index].type == 1 ? 'Tatap Muka' : 'Chat',
                                   style: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,

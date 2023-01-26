@@ -87,6 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
         studyProgramId: studyProgramId,
         gender: gender,
         fcmToken: mtoken,
+        nim: nimController.text,
       )) {
         Navigator.pushNamed(context, '/home');
       } else {

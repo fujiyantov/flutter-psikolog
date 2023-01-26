@@ -48,6 +48,7 @@ class AuthService {
     int? studyProgramId,
     String? gender,
     String? fcmToken,
+    String? nim,
   }) async {
     var url = '$baseUrl/register';
     var headers = {
@@ -64,6 +65,7 @@ class AuthService {
       'study_program_id': studyProgramId,
       'gender': gender,
       'fcm_token': fcmToken,
+      'nim': nim,
     });
 
     var response = await http.post(

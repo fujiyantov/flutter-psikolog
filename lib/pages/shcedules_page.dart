@@ -158,7 +158,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                       Container(
                         width: 80,
                         child: Text(
-                          'Tipe',
+                          'Layanan',
                           style: const TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -169,7 +169,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                       ),
                       Text(': '),
                       Text(
-                        schedules[index].type == 1 ? 'Offline' : 'Online',
+                        schedules[index].type == 1 ? 'Tatap Muka' : 'Chat',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -215,7 +215,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                             Container(
                               width: 80,
                               child: Text(
-                                'Tempat',
+                                'Keterangan',
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -226,7 +226,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                             ),
                             Text(': '),
                             Text(
-                              '${schedules[index].meetAt}',
+                              '${schedules[index].description}',
                               style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,

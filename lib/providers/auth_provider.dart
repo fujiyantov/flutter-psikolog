@@ -41,6 +41,7 @@ class AuthProvider with ChangeNotifier {
     int? studyProgramId,
     String? gender,
     String? fcmToken,
+    String? nim,
   }) async {
     try {
       Auth auth = await AuthService().register(
@@ -53,6 +54,7 @@ class AuthProvider with ChangeNotifier {
         studyProgramId: studyProgramId,
         gender: gender,
         fcmToken: fcmToken,
+        nim: nim,
       );
 
       _auth = auth;
