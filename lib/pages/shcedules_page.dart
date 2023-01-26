@@ -226,7 +226,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                             ),
                             Text(': '),
                             Text(
-                              '${schedules[index].description}',
+                              schedules[index].description != null ? '${schedules[index].description}' : '-',
                               style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,
