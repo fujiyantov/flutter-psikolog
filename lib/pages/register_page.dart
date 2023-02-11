@@ -40,29 +40,43 @@ class _RegisterPageState extends State<RegisterPage> {
     faculties = [];
     studyPrograms = [];
     getAllFaculty();
-    getAllStudyProgram();
+    // getAllStudyProgram();
     getToken();
   }
 
   getAllFaculty() async {
     var resFaculties = await MasterService().getAllFaculty();
     setState(() {
+      print(resFaculties);
       faculties = resFaculties;
     });
   }
 
-  getAllStudyProgram() async {
+  /* getAllStudyProgram() async {
     var resStudyPrograms = await MasterService().getAllStudyProgram();
     setState(() {
       studyPrograms = resStudyPrograms;
+      print(studyPrograms.length);
+    });
+  } */
+
+  studyProgramByFacultyId(id) async {
+    var resStudyPrograms = await MasterService().studyProgramByFacultyId(id);
+    setState(() {
+      // print(resStudyPrograms);
+      // studyProgramId = 1;
+      // studyPrograms.clear();
+      // print(studyPrograms.length);
+      studyPrograms = resStudyPrograms;
+      // print(studyPrograms.length);
     });
   }
 
   void getToken() async {
     await FirebaseMessaging.instance.getToken().then((token) {
       setState(() {
-       mtoken = token;
-       print("MY TOKEN REGIS $mtoken"); 
+        mtoken = token;
+        print("MY TOKEN REGIS $mtoken");
       });
     });
   }
@@ -172,7 +186,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     value: facultyId,
                     onChanged: (newValue) {
                       setState(() {
+                        studyProgramByFacultyId(newValue);
                         facultyId = newValue;
+                        studyProgramId = null;
                       });
                     },
                   ),
@@ -194,6 +210,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     isExpanded: true,
                     underline: const SizedBox(),
                     items: studyPrograms.map((e) {
+                    // items: studyProgramByFacultyId(facultyId).map((e) {
+                      // print(e);
                       return DropdownMenuItem(
                         value: e.id,
                         child: Text(e.title.toString()),
@@ -203,6 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onChanged: (e) {
                       setState(() {
                         studyProgramId = e;
+                        // studyPrograms.clear();
                       });
                     },
                   ),

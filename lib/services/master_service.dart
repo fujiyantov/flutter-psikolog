@@ -19,7 +19,7 @@ class MasterService {
       Uri.parse(url),
       headers: headers,
     );
-
+    // print(response.body);
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data'];
 
@@ -28,10 +28,10 @@ class MasterService {
       for (var item in data) {
         faculties.add(Faculties.fromJson(item));
       }
-      List debug = [];
-      debug.add(faculties.map((e) => print(e.title)));
+      // List debug = [];
+      // debug.add(faculties.map((e) => print(e.title)));
 
-      print(debug);
+      // print(debug);
       return faculties;
     } else {
       throw Exception('failed: fetch faculties');
@@ -40,6 +40,32 @@ class MasterService {
 
   Future<List<StudyPrograms>> getAllStudyProgram() async {
     var url = '$baseUrl/study-programs';
+    var headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    var response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      List data = jsonDecode(response.body)['data'];
+
+      List<StudyPrograms> studyProgram = [];
+
+      for (var item in data) {
+        studyProgram.add(StudyPrograms.fromJson(item));
+      }
+
+      return studyProgram;
+    } else {
+      throw Exception('failed: fetch study program');
+    }
+  }
+
+  Future<List<StudyPrograms>> studyProgramByFacultyId(int faculty_id) async {
+    var url = '$baseUrl/faculties/$faculty_id/study-programs';
     var headers = {
       'Content-type': 'application/json',
       'Accept': 'application/json',
